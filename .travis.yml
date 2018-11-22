@@ -1,0 +1,15 @@
+sudo: required
+language: go
+go: "1.11.x"
+env:
+  - GO111MODULE=on
+deploy:
+  provider: gae
+  project: gae-test-kkn
+  keyfile: gce.json
+  verbosity: warning
+  skip_cleanup: true
+  on: master
+before_install:
+- openssl aes-256-cbc -K $encrypted_256ece56fa9c_key -iv $encrypted_256ece56fa9c_iv
+  -in gce.json.enc -out gce.json -d
